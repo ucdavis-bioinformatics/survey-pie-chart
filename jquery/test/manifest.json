@@ -1,0 +1,9 @@
+{
+	"name" : "Ingredients Portion Pie",
+	"author" : "Nikhil Joshi",
+	"version": "0.03",
+	"supportedFieldTypes": ["text"],
+	"hideDefaultRequiredMessage": true,
+	"hideDefaultConstraintMessage": true,
+	"externalJs": ["highcharts.js","jquery.js","jquery-ui.min.js"]
+}
