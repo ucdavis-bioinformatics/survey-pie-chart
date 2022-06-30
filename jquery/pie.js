@@ -71,6 +71,14 @@ $(document).ready(function(){
           return;
         }
 
+        for (let i=0; i<chart.series[0].points.length; i++) {
+            if (str === chart.series[0].points[i].name) {
+                alert(str + " is already an ingredient.");
+                $("#ingredient_input").val('');
+                return;
+            }
+        }
+
         $("#ingredient_input").val('');
 
         chart.series[0].addPoint([str,0]);
@@ -80,17 +88,34 @@ $(document).ready(function(){
         //console.log(len)
 
         slider_cnt += 1;
-        $('<div id="slider'+slider_cnt+'">').appendTo('#sliders')
-        $('<label>' + str + '</label>').appendTo('#sliders')
+        $('<div id="slider'+slider_cnt+'"></div>').appendTo('#sliders')
+        $('<label id="ingredient_name">' + str + '</label>').appendTo('#slider'+slider_cnt)
+        $('<span>&nbsp;&nbsp;</span>').appendTo('#slider'+slider_cnt)
+        $('<button type="button" id="button'+slider_cnt+'">Remove</button><br/><br/>').appendTo('#slider'+slider_cnt)
 
-        // $('<button type="button" id="button'+slider_cnt+'">Remove</button><br/><br/>').appendTo("#sliders")
+        $(document).on("click", "#button"+slider_cnt, function(){
+           let name = $(this).parent().children("#ingredient_name")[0].innerText;
+
+           // console.log(name);
+           // console.log($(this).parent().children("#ingredient_name")[0].innerText);
+
+           let slength = chart.series[0].points.length;
+           for (let j=0; j<slength; j++) {
+              if (name === chart.series[0].points[j].name) {
+                  chart.series[0].points[j].remove();
+                  break;
+              }
+           }
+
+           $(this).parent().remove();
+        });
 
         // $('#button'+slider_cnt).click(function() {
         //   console.log(slider_cnt);
-        //   $('.slider'+slider_cnt).remove();
+        //   $('#slider'+slider_cnt).remove();
         // });
 
-        $('<div></div>').appendTo('#sliders').slider({
+        $('<div></div>').appendTo('#slider'+slider_cnt).slider({
           value: point.y,
           max: 100,
           min: 0,
@@ -109,7 +134,7 @@ $(document).ready(function(){
           }
         })
 
-        $('<br/></div>').appendTo("#sliders")
+        $('<br/>').appendTo("#sliders")
 
     });
 });
