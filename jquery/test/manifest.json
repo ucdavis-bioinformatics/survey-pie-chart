@@ -1,7 +1,7 @@
 {
 	"name" : "Ingredients Portion Pie",
 	"author" : "Nikhil Joshi",
-	"version": "0.03",
+	"version": "0.06",
 	"supportedFieldTypes": ["text"],
 	"hideDefaultRequiredMessage": true,
 	"hideDefaultConstraintMessage": true,

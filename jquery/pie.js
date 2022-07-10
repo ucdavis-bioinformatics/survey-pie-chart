@@ -123,10 +123,10 @@ $(document).ready(function(){
             point.update(ui.value, true)
 
             let retlist = chart.series[0].points.map(function (ce) {
-              return ce.name + ":" + ce.percentage;
+              return ce.name + ":" + ce.percentage.toFixed(1);
             });
 
-            // console.log(retlist.toString())
+            console.log(retlist.toString())
 
             // console.log(chart.series[0].points[0].name)
             // console.log(chart.series[0].points[0].percentage)
@@ -134,7 +134,7 @@ $(document).ready(function(){
           }
         })
 
-        $('<br/>').appendTo("#sliders")
+        $('<br/>').appendTo('#slider'+slider_cnt)
 
     });
 });
