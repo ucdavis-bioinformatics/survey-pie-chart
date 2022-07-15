@@ -40,8 +40,8 @@ $(document).ready(function(){
     $("#add_button").click(function(){
         var str = $("#ingredient_input").val();
         if (!str) {return;}
-        if (str.match('^\\s+')) {
-          alert("Name cannot be empty or begin with a space.")
+        if (str.match('^\\s+') || str.match('\\s+$')) {
+          alert("Name cannot be empty, begin with a space, or end with a space.")
           $("#ingredient_input").val('');
           return;
         }
@@ -53,7 +53,7 @@ $(document).ready(function(){
         }
 
         for (let i=0; i<chart.series[0].points.length; i++) {
-            if (str === chart.series[0].points[i].name) {
+            if (str.toUpperCase() === chart.series[0].points[i].name.toUpperCase()) {
                 alert(str + " is already an ingredient.");
                 $("#ingredient_input").val('');
                 return;
@@ -99,9 +99,9 @@ $(document).ready(function(){
 
 
         $('<div></div>').appendTo('#slider'+slider_cnt).slider({
-          value: point.y,
+          value: 1,
           max: 100,
-          min: 0,
+          min: 1,
           slide: function(event, ui) {
             point.update(ui.value, true)
 
@@ -118,6 +118,7 @@ $(document).ready(function(){
         })
 
         $('<br/>').appendTo('#slider'+slider_cnt)
+        point.update(1, true)
 
     });
 });
