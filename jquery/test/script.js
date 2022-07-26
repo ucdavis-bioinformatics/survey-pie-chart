@@ -62,7 +62,7 @@ $(document).ready(function(){
 
         $("#ingredient_input").val('');
 
-        chart.series[0].addPoint([str,0]);
+        chart.series[0].addPoint([str,1]);
         var len = chart.series[0].points.length;
         var point = chart.series[0].points[len-1];
 
@@ -118,8 +118,6 @@ $(document).ready(function(){
         })
 
         $('<br/>').appendTo('#slider'+slider_cnt)
-        point.update(1, true)
-
     });
 });
 
